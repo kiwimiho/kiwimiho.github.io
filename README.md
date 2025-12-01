@@ -47,33 +47,19 @@ Let Him Cook is a re-theming of the retro arcade game Punch-Out. You play as a c
 
 </div>
 
-## The Traveler
-In this game, players take on the role of Mustard the Muskrat and must complete a series of platforming fetch quests. There are enemies to fight or avoid. Upon completing these quests, players face the final boss.
 
-**My Role:** Designer & Programmer
+## Other Game Experiments
 
-**Trailer**
-<div style="white-space: nowrap; overflow-x:auto;">
-  <!-- Clickable thumbnail for NEW Google Drive video -->
-  <a href="https://drive.google.com/file/d/1dJDl-D2vCiDa64_Nz0zTvt07h_jQW5By/view" target="_blank">
-    <img src="https://drive.google.com/thumbnail?id=1dJDl-D2vCiDa64_Nz0zTvt07h_jQW5By"
-         height="150" style="display:inline-block;">
-  </a>
-</div>
-
-## Cosmo-Combat: Mars Arena
-This is a real-time strategy game where you play as humans while the computer controls the aliens. By harvesting resources, you can increase your number of harvesters and fighters. The goal of the game is to take down the enemy’s three towers using your fighters. Meanwhile, the aliens will attempt to destroy your towers.
-
-**Trailer**
+| **Game** | **Intro** | **Trailer** |
+|---------|-----------|-------------|
+| **The Traveler** | A 3D platform game | <a href="https://drive.google.com/file/d/1dJDl-D2vCiDa64_Nz0zTvt07h_jQW5By/view" target="_blank"><img src="/assets/thetraveler/traveler_01.png" height="120"></a> |
+| **Cosmo-Combat: Mars Arena** | A real-time strategy game | <a href="https://drive.google.com/file/d/1igEtesHNpwdsJvixAGEL1ci4pcJjWs6m/view" target="_blank"><img src="https://drive.google.com/thumbnail?id=1igEtesHNpwdsJvixAGEL1ci4pcJjWs6m" height="120"></a> |
+| **Hungry Hungry Students** | A tower defense demo | <a href="https://drive.google.com/file/d/1DJ6yYPtvF6N0xX5HKkmwJgSNYUyuzS8B/view" target="_blank"><img src="https://drive.google.com/thumbnail?id=1DJ6yYPtvF6N0xX5HKkmwJgSNYUyuzS8B" height="120"></a> |
+| **Bug Rescue** | My first Unity game. Adventure game with NPCs | <a href="https://drive.google.com/file/d/1T6AGRPx1RA_3PtGswmjl0aCp91FHAVSz/view" target="_blank"><img src="https://drive.google.com/thumbnail?id=1T6AGRPx1RA_3PtGswmjl0aCp91FHAVSz" height="120"></a> |
 
 
 
-## Hungry Hungry Students
-A tower defense game where you shoot food at students to prevent them from going hungry. The game features a points system that lets you earn money by feeding students. Using this money, you can buy or upgrade your towers. Hungry students reduce the player's health. When health reaches zero, the level is restarted. The game includes multiple levels with varying difficulty.
-
-**Trailer**
-
-## Bug Rescue
+## 
 The game centers on completing quests assigned by NPCs. Players must save bugs from attacking stone golems. Returning these bugs to NPCs helps progress the story.
 
 **Trailer**
