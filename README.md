@@ -39,6 +39,12 @@ Let Him Cook is a re-theming of the retro arcade game Punch-Out. You play as a c
 
 **Trailer**
 <div style="white-space: nowrap; overflow-x:auto;">
+
+   <!-- Images -->
+  <img src="/assets/sunseekers/sunseekers_01.png" height="150">
+  <img src="/assets/sunseekers/sunseekers_02.png" height="150">
+  <img src="/assets/sunseekers/sunseekers_03.png" height="150">
+  
   <!-- Clickable thumbnail linking to Google Drive video -->
   <a href="https://drive.google.com/file/d/1Py10pA3CWpEVe4BHhGulVSbUGOi2cVmM/view" target="_blank">
     <img src="https://drive.google.com/thumbnail?id=1Py10pA3CWpEVe4BHhGulVSbUGOi2cVmM"
@@ -56,16 +62,6 @@ Let Him Cook is a re-theming of the retro arcade game Punch-Out. You play as a c
 | **Cosmo-Combat: Mars Arena** | A real-time strategy game | <a href="https://drive.google.com/file/d/1igEtesHNpwdsJvixAGEL1ci4pcJjWs6m/view" target="_blank"><img src="https://drive.google.com/thumbnail?id=1igEtesHNpwdsJvixAGEL1ci4pcJjWs6m" height="120"></a> |
 | **Hungry Hungry Students** | A tower defense demo | <a href="https://drive.google.com/file/d/1DJ6yYPtvF6N0xX5HKkmwJgSNYUyuzS8B/view" target="_blank"><img src="https://drive.google.com/thumbnail?id=1DJ6yYPtvF6N0xX5HKkmwJgSNYUyuzS8B" height="120"></a> |
 | **Bug Rescue** | My first Unity game. Adventure game with NPCs | <a href="https://drive.google.com/file/d/1T6AGRPx1RA_3PtGswmjl0aCp91FHAVSz/view" target="_blank"><img src="https://drive.google.com/thumbnail?id=1T6AGRPx1RA_3PtGswmjl0aCp91FHAVSz" height="120"></a> |
+| **Write Wise** | Explored gamification ideas in GTD |  <img src="/assets/writewise/writewise_01.png" height="150"> |
 
-
-
-## 
-The game centers on completing quests assigned by NPCs. Players must save bugs from attacking stone golems. Returning these bugs to NPCs helps progress the story.
-
-**Trailer**
-
-## Write Wise
-This application uses the Pomodoro Technique and gamification to enhance productivity and make the essay writing process less tedious. A chicken character interacts with the user and shows different emotions based on the user’s typing speed. The application includes a game-like interface for storing all of the user’s essays. Elements like these can make writing an essay enjoyable, and both techniques can help users write more efficiently.
-
-**Trailer**
 
