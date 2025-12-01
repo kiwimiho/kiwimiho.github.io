@@ -37,13 +37,13 @@ Let Him Cook is a re-theming of the retro arcade game Punch-Out. You play as a c
 
 **My Role:** Programmer
 
-**Trailer**
+**Game Screenshots & Trailer**
 <div style="white-space: nowrap; overflow-x:auto;">
 
    <!-- Images -->
-  <img src="/assets/sunseekers/sunseekers_01.png" height="150">
-  <img src="/assets/sunseekers/sunseekers_02.png" height="150">
-  <img src="/assets/sunseekers/sunseekers_03.png" height="150">
+  <img src="/assets/lethimcook/lethimcook_02.png" height="150">
+  <img src="/assets/lethimcook/lethimcook_01.png" height="150">
+  <img src="/assets/lethimcook/lethimcook_03.png" height="150">
   
   <!-- Clickable thumbnail linking to Google Drive video -->
   <a href="https://drive.google.com/file/d/1Py10pA3CWpEVe4BHhGulVSbUGOi2cVmM/view" target="_blank">
@@ -54,7 +54,7 @@ Let Him Cook is a re-theming of the retro arcade game Punch-Out. You play as a c
 </div>
 
 
-## Other Game Experiments
+## Other Game Attemps
 
 | **Game** | **Intro** | **Trailer** |
 |---------|-----------|-------------|
