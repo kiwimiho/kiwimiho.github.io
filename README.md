@@ -11,16 +11,24 @@ In the world of Sun Seeker, the sun lives on top of a temple. One day, the sun s
 ### My Role
 Producer & Programmer
 ### Game Trailer
-![sunseekers001](/assets/sunseekers/sunseekers001.png)
-![sunseekers001](/assets/sunseekers/sunseekers002.png)
-![sunseekers001](/assets/sunseekers/sunseekers003.png)
-![sunseekers001](/assets/sunseekers/sunseekers004.png)
-<iframe width="560" height="315"
-src="https://www.youtube.com/embed/VIDEO_ID"
-title="YouTube video player" frameborder="0"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-allowfullscreen>
-</iframe>
+<div style="white-space: nowrap; overflow-x:auto;">
+
+  <!-- 4 Images -->
+  <img src="/assets/sunseekers/sunseekers_01.png" height="200">
+  <img src="/assets/sunseekers/sunseekers_02.png" height="200">
+  <img src="/assets/sunseekers/sunseekers_03.png" height="200">
+  <img src="/assets/sunseekers/sunseekers_04.png" height="200">
+
+  <!-- YouTube thumbnail on the same row (click to open video) -->
+  <a href="https://www.youtube.com/watch?v=buZuZK-r-Es" target="_blank">
+    <img src="https://img.youtube.com/vi/buZuZK-r-Es/hqdefault.jpg"
+         height="200" style="display:inline-block;">
+  </a>
+
+</div>
+
+
+
 ### Link
 https://the-architects.itch.io/sun-seeker 
 
