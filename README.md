@@ -10,25 +10,41 @@ In the world of Sun Seeker, the sun lives on top of a temple. One day, the sun s
 
 ### My Role
 Producer & Programmer
-### Game Trailer
+### Game Screenshots & Trailer
 <div style="white-space: nowrap; overflow-x:auto;">
 
-  <!-- 4 Images -->
-  <img src="/assets/sunseekers/sunseekers_01.png" height="200">
-  <img src="/assets/sunseekers/sunseekers_02.png" height="200">
-  <img src="/assets/sunseekers/sunseekers_03.png" height="200">
-  <img src="/assets/sunseekers/sunseekers_04.png" height="200">
+  <!-- Images -->
+  <img src="/assets/sunseekers/sunseekers_01.png" height="150">
+  <img src="/assets/sunseekers/sunseekers_02.png" height="150">
+  <img src="/assets/sunseekers/sunseekers_03.png" height="150">
+  <img src="/assets/sunseekers/sunseekers_04.png" height="150">
 
-  <!-- YouTube thumbnail on the same row (click to open video) -->
-  <a href="https://www.youtube.com/watch?v=buZuZK-r-Es" target="_blank">
-    <img src="https://img.youtube.com/vi/buZuZK-r-Es/hqdefault.jpg"
-         height="200" style="display:inline-block;">
+  <!-- Clickable thumbnail linking to Google Drive video -->
+  <a href="https://drive.google.com/file/d/1oHaQSbLrp0TQX3IbpTrxqoYvd0SfGcY0/view" target="_blank">
+    <img src="https://drive.google.com/thumbnail?id=1oHaQSbLrp0TQX3IbpTrxqoYvd0SfGcY0"
+         height="150" style="display:inline-block;">
   </a>
 
 </div>
 
-
-
 ### Link
 https://the-architects.itch.io/sun-seeker 
 
+## Let Him Cook
+### Intro
+Let Him Cook is a re-theming of the retro arcade game Punch-Out. You play as a chef fighting against food that has come to life. Defeat the food by dodging, punching, and blocking. This game also features a score counter, a special critical move, and utensil-themed referees.
+### Tech Used
+
+### My Role
+Programmer
+### Game Screenshots & Trailer
+<div style="white-space: nowrap; overflow-x:auto;">
+  <!-- Clickable thumbnail linking to Google Drive video -->
+  <a href="https://drive.google.com/file/d/1Py10pA3CWpEVe4BHhGulVSbUGOi2cVmM/view" target="_blank">
+    <img src="https://drive.google.com/thumbnail?id=1Py10pA3CWpEVe4BHhGulVSbUGOi2cVmM"
+         height="150" style="display:inline-block;">
+  </a>
+
+</div>
+
+## 
