@@ -2,7 +2,7 @@
 
 Cornell'29 and a game developer
 
-# My Game Dev Projects
+<!-- # My Game Dev Projects -->
 ## Sun Seeker
 
 The sun has shattered and scattered sun shards throughout the temple. Play as a little moth person called Lo. Dash, climb, and glide through many 3D platforming levels. Collect all the sun shards and ascend the tower to piece the sun back together!
