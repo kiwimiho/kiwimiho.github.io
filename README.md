@@ -54,7 +54,7 @@ Let Him Cook is a re-theming of the retro arcade game Punch-Out. You play as a c
 </div>
 
 
-## Other Game Attemps
+## Other Games
 
 | **Game** | **Intro** | **Trailer** |
 |---------|-----------|-------------|
