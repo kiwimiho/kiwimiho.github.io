@@ -5,7 +5,7 @@ Cornell'29 and a game developer
 # My Game Dev Projects
 ## Sun Seeker
 
-In the world of Sun Seeker, the sun lives on top of a temple. One day, the sun shatters into many sun shards that are spread throughout this temple. You play as a little moth person determined to ascend the temple, collect the sun shards, and revive the sun. Sun Seeker is a 3D platformer played on the PC. As you explore an interconnected map, you gain abilities that help you ascend the temple. Solve puzzles, conquer difficult platforming, and piece the sun back together.
+The sun has shattered and scattered sun shards throughout the temple. Play as a little moth person called Lo. Dash, climb, and glide through many 3D platforming levels. Collect all the sun shards and ascend the tower to piece the sun back together!
 
 **Tech:** <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Unity_Technologies_logo.svg" height="20">
 
