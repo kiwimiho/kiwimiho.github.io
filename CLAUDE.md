@@ -144,23 +144,28 @@ GitHub's entry also carries an inline `<svg>` logo; plain-text links need no ico
 - **Solid colors only.** No translucency: no `rgba()` fills, no `backdrop-filter`,
   no reduced `opacity` on images, no gradient card backgrounds, no drop shadows.
   Solid fills with 2px borders.
-- **Soft shifting background.** `.bg-anim` holds seven blurred drifting blobs
-  spread across the green hue range — chartreuse and soft yellow at one end, teal
-  and sea green at the other, with leaf/mint/lime between. The user asked for
-  visible variation shifted toward blue *and* yellow, so keep both ends present;
-  a set of near-identical greens is what they rejected. **But every blob must
-  still read as a green.** A sky-blue blob (`#74b6d4`) was tried and rejected for
-  looking like "a big blue spot" — the cool end stops at blue-green/teal
-  (roughly hue 165–180), never a true blue. Keep them light enough
-  that dark text stays readable over the page margins, and keep the page
-  background itself sage rather than white. Keep the `prefers-reduced-motion`
-  guard.
-- **Blob positioning gotcha.** `.bg-anim` is `position: fixed` with
-  `inset: -25vh -25vw`, so the layer is only ~150vh tall and does not scroll. A
-  blob with `top` beyond ~120vh sits outside the layer and is never visible. Place
-  every blob within that band and spread them horizontally instead — the
-  background is one static ambient wash for the whole page, not a per-section
-  effect.
+- **Soft shifting background — keep it cheap.** `.bg-anim` is ONE fixed element
+  painted with seven overlapping `radial-gradient()` layers, spread across the
+  green hue range: chartreuse and soft yellow at one end, teal and sea green at
+  the other, leaf/mint/lime between. Every blob must still read as a green — a
+  sky-blue one (`#74b6d4`) was rejected as "a big blue spot", so the cool end
+  stops at blue-green/teal. It drifts via a slow `translate3d` on that single
+  element, and the `prefers-reduced-motion` guard disables the drift.
+- **Never use `filter: blur()` on the background.** This caused real, reported
+  lag twice and must not come back:
+  1. `blur(90px)` on the `.bg-anim` parent, with blobs animating inside it, forced
+     the browser to re-blur a ~11 megapixel surface every single frame.
+  2. Moving the blur onto 7 individual blobs plus `will-change: transform` was
+     worse — it created 7 large GPU textures and bogged down the *entire browser*,
+     not just the tab.
+  Radial gradients are soft without any filter, rasterize once into a single
+  cached texture, and cost nothing per frame. Keep it that way: no `filter`, no
+  `backdrop-filter`, and no `will-change` in this stylesheet.
+- **Keep image files near their displayed size.** Screenshots render 160px tall
+  and are stored ~800px wide; `traveler_01.png` is a 620px-wide trailer thumbnail
+  so it is stored at 1280px. The originals were 1.2–2.1 MB each (13 MB total),
+  which was slow to load and heavy to decode. Resize new screenshots with
+  `sips --resampleWidth 800 <file>` before committing.
 - **No footer.**
 - The Unity logo is dark artwork, so it needs **no CSS filter** on light surfaces.
   A dark theme would need `filter: invert(1) brightness(1.8)` on `.tech-logo img`

@@ -42,40 +42,36 @@
   }
 
   /* ---------- soft shifting color background ---------- */
+  /* One painted layer, zero filters.
+     Previous versions used blurred <i> blobs. Even with the blur moved onto the
+     blobs, 7 large blurred elements with will-change became 7 big GPU textures,
+     which bogged down the whole browser (not just this tab). Radial gradients are
+     soft by nature, so they need no blur at all: the browser rasterizes this once
+     into a single cached texture and the slow drift just moves that texture. */
   .bg-anim {
     position: fixed;
-    inset: -25vh -25vw;
+    inset: -20vh -20vw;
     z-index: -1;
     pointer-events: none;
-    /* NOTE: do NOT put the blur here. Blurring this parent re-runs a ~11 Mpx
-       gaussian every frame as the blobs move, which pegs the compositor and
-       makes the whole page lag. Blur each blob instead — see below. */
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(38vw 38vw at 10%  6%, #d9e585 0%, #d9e58500 62%),
+      radial-gradient(32vw 32vw at 90% 16%, #6ec7c6 0%, #6ec7c600 62%),
+      radial-gradient(34vw 34vw at 22% 60%, #a5d68f 0%, #a5d68f00 62%),
+      radial-gradient(30vw 30vw at 84% 86%, #ece68f 0%, #ece68f00 62%),
+      radial-gradient(34vw 34vw at 56% 40%, #5fb9a2 0%, #5fb9a200 62%),
+      radial-gradient(26vw 26vw at 36% 92%, #8ed6ae 0%, #8ed6ae00 62%),
+      radial-gradient(24vw 24vw at 64% 24%, #c6df7c 0%, #c6df7c00 62%);
+    animation: wash 48s ease-in-out infinite alternate;
   }
-  .bg-anim i {
-    position: absolute;
-    display: block;
-    border-radius: 50%;
-    filter: blur(70px);
-    will-change: transform;
-  }
-  /* greens spread across the hue range, from yellow-green through to blue-green.
-     NOTE: .bg-anim is fixed and ~150vh tall, so `top` must stay under ~120vh —
-     anything lower renders outside the layer and is never seen. */
-  .b1 { width: 34vw; height: 34vw; background: #d9e585; top:  0;    left:  0;    animation: drift1 26s ease-in-out infinite alternate; }            /* chartreuse */
-  .b2 { width: 28vw; height: 28vw; background: #6ec7c6; top: 14vh;  right: 3vw;  animation: drift2 32s ease-in-out infinite alternate; }            /* teal */
-  .b3 { width: 30vw; height: 30vw; background: #a5d68f; top: 54vh;  left:  7vw;  animation: drift3 29s ease-in-out infinite alternate; }            /* leaf */
-  .b4 { width: 26vw; height: 26vw; background: #ece68f; top: 84vh;  right: 9vw;  animation: drift1 35s ease-in-out infinite alternate-reverse; }   /* soft yellow */
-  .b5 { width: 30vw; height: 30vw; background: #5fb9a2; top: 38vh;  right: 28vw; animation: drift4 34s ease-in-out infinite alternate; }            /* sea green */
-  .b6 { width: 24vw; height: 24vw; background: #8ed6ae; top: 92vh;  left: 28vw;  animation: drift2 28s ease-in-out infinite alternate-reverse; }   /* mint */
-  .b7 { width: 22vw; height: 22vw; background: #c6df7c; top: 28vh;  left: 36vw;  animation: drift3 31s ease-in-out infinite alternate-reverse; }   /* lime */
 
-  @keyframes drift1 { from { transform: translate3d(0,0,0); }        to { transform: translate3d(14vw, 10vh, 0); } }
-  @keyframes drift2 { from { transform: translate3d(0,0,0); }        to { transform: translate3d(-12vw, 14vh, 0); } }
-  @keyframes drift3 { from { transform: translate3d(0,0,0); }        to { transform: translate3d(10vw, -12vh, 0); } }
-  @keyframes drift4 { from { transform: translate3d(0,0,0); }        to { transform: translate3d(-9vw, -10vh, 0); } }
+  @keyframes wash {
+    from { transform: translate3d(-2.5vw, -1.5vh, 0); }
+    to   { transform: translate3d( 2.5vw,  1.5vh, 0); }
+  }
 
   @media (prefers-reduced-motion: reduce) {
-    .bg-anim i { animation: none; }
+    .bg-anim { animation: none; }
   }
 
   .wrap {
@@ -335,7 +331,6 @@
 <body>
 
 <div class="bg-anim" aria-hidden="true">
-  <i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i><i class="b5"></i><i class="b6"></i><i class="b7"></i>
 </div>
 
 <div class="wrap">
