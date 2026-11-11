@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Summer Shen — Game Developer</title>
+<meta name="description" content="Summer Shen — Cornell '29, game developer. Unity games, tools, and prototypes.">
+<meta name="color-scheme" content="light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #c3d7b5;  /* sage green page — cards read as raised */
+    --surface:   #fcf8ec;  /* card — warm ivory */
+    --surface-2: #f1ead6;  /* warm, one step down from card */
+    --border:    #a3c096;
+    --border-lit:#6f9c66;
+    --text:      #17301f;
+    --text-dim:  #3f5a46;
+    --text-mute: #6d8570;
+    --green:     #1f7a4a;  /* primary accent */
+    --green-deep:#123f28;  /* headings */
+    --green-mid: #35935c;  /* secondary tone */
+    --green-soft:#d3e5cf;  /* accent fill */
+    --on-accent: #fcf8ec;
+    --radius:    16px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ---------- soft shifting color background ---------- */
+  .bg-anim {
+    position: fixed;
+    inset: -25vh -25vw;
+    z-index: -1;
+    filter: blur(90px);
+    pointer-events: none;
+  }
+  .bg-anim i {
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+  }
+  /* greens spread across the hue range, from yellow-green through to blue-green.
+     NOTE: .bg-anim is fixed and ~150vh tall, so `top` must stay under ~120vh —
+     anything lower renders outside the layer and is never seen. */
+  .b1 { width: 34vw; height: 34vw; background: #d9e585; top:  0;    left:  0;    animation: drift1 26s ease-in-out infinite alternate; }            /* chartreuse */
+  .b2 { width: 28vw; height: 28vw; background: #6ec7c6; top: 14vh;  right: 3vw;  animation: drift2 32s ease-in-out infinite alternate; }            /* teal */
+  .b3 { width: 30vw; height: 30vw; background: #a5d68f; top: 54vh;  left:  7vw;  animation: drift3 29s ease-in-out infinite alternate; }            /* leaf */
+  .b4 { width: 26vw; height: 26vw; background: #ece68f; top: 84vh;  right: 9vw;  animation: drift1 35s ease-in-out infinite alternate-reverse; }   /* soft yellow */
+  .b5 { width: 30vw; height: 30vw; background: #5fb9a2; top: 38vh;  right: 28vw; animation: drift4 34s ease-in-out infinite alternate; }            /* sea green */
+  .b6 { width: 24vw; height: 24vw; background: #8ed6ae; top: 92vh;  left: 28vw;  animation: drift2 28s ease-in-out infinite alternate-reverse; }   /* mint */
+  .b7 { width: 22vw; height: 22vw; background: #c6df7c; top: 28vh;  left: 36vw;  animation: drift3 31s ease-in-out infinite alternate-reverse; }   /* lime */
+
+  @keyframes drift1 { from { transform: translate(0,0) scale(1); }    to { transform: translate(14vw, 10vh) scale(1.18); } }
+  @keyframes drift2 { from { transform: translate(0,0) scale(1.1); }  to { transform: translate(-12vw, 14vh) scale(.92); } }
+  @keyframes drift3 { from { transform: translate(0,0) scale(.95); }  to { transform: translate(10vw, -12vh) scale(1.2); } }
+  @keyframes drift4 { from { transform: translate(0,0) scale(1.05); } to { transform: translate(-9vw, -10vh) scale(.9); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bg-anim i { animation: none; }
+  }
+
+  .wrap {
+    position: relative;
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 0 24px 96px;
+  }
+
+  a { color: var(--green); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ---------- header ---------- */
+  header {
+    padding: 96px 0 48px;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 60px;
+  }
+  h1 {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-size: clamp(2.8rem, 7.5vw, 4.4rem);
+    line-height: 1.02;
+    letter-spacing: -.03em;
+    margin: 0 0 24px;
+    color: var(--green-deep);
+  }
+  h1 em {
+    font-style: normal;
+    color: inherit;
+  }
+  .header-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .header-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border: 2px solid var(--border-lit);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--text);
+    font-size: .92rem;
+    font-weight: 600;
+    transition: border-color .18s, background .18s, color .18s;
+  }
+  .header-links a:hover {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--on-accent);
+    text-decoration: none;
+  }
+
+  /* ---------- section labels ---------- */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin: 0 0 26px;
+  }
+  .section-label::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background: var(--border-lit);
+  }
+
+  /* ---------- project cards ---------- */
+  .project {
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-bottom: 28px;
+    transition: border-color .18s;
+  }
+  .project:hover { border-color: var(--border-lit); }
+
+  .project-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  .project-head h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: -.02em;
+    margin: 0;
+    color: var(--text);
+  }
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 2px solid var(--green-mid);
+    background: var(--green-soft);
+    color: var(--green-deep);
+    font-size: .84rem;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: background .18s, color .18s, border-color .18s;
+  }
+  .project-link:hover {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--on-accent);
+    text-decoration: none;
+  }
+  .project-link svg { width: 12px; height: 12px; }
+
+  .desc {
+    color: var(--text-dim);
+    margin: 0 0 24px;
+    max-width: 68ch;
+  }
+
+  /* ---------- trailer ---------- */
+  .trailer {
+    display: block;
+    position: relative;
+    width: 100%;
+    max-width: 620px;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid var(--border);
+    background: var(--surface-2);
+    margin-bottom: 26px;
+    transition: border-color .18s;
+  }
+  .trailer:hover { border-color: var(--green); text-decoration: none; }
+  .trailer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .35s;
+  }
+  .trailer:hover img { transform: scale(1.04); }
+  .play {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+  }
+  .play span {
+    display: grid;
+    place-items: center;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 3px solid var(--green);
+    transition: background .18s, border-color .18s;
+  }
+  .trailer:hover .play span { background: var(--green); border-color: var(--green); }
+  .play span::after {
+    content: "";
+    width: 0; height: 0;
+    margin-left: 4px;
+    border-left: 17px solid var(--green);
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    transition: border-left-color .18s;
+  }
+  .trailer:hover .play span::after { border-left-color: var(--on-accent); }
+  .trailer-tag {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    padding: 5px 11px;
+    border-radius: 7px;
+    background: var(--surface);
+    border: 2px solid var(--green-mid);
+    color: var(--green-deep);
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- meta ---------- */
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 30px;
+    margin-bottom: 24px;
+    font-size: .92rem;
+  }
+  .meta div { display: flex; align-items: center; gap: 10px; }
+  .meta b {
+    color: var(--text-mute);
+    font-weight: 700;
+    font-size: .74rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  .meta span { color: var(--text-dim); }
+  .tech-logo {
+    display: inline-grid;
+    place-items: center;
+    padding: 7px 12px;
+    border-radius: 8px;
+    background: var(--surface-2);
+    border: 2px solid var(--border);
+  }
+  .tech-logo img {
+    height: 16px;
+    display: block;
+  }
+
+  /* ---------- screenshots ---------- */
+  .shots-label {
+    font-size: .74rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    margin: 0 0 12px;
+  }
+  .shots {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-lit) transparent;
+  }
+  .shots::-webkit-scrollbar { height: 8px; }
+  .shots::-webkit-scrollbar-thumb { background: var(--border-lit); border-radius: 999px; }
+  .shots img {
+    height: 160px;
+    border-radius: 10px;
+    border: 2px solid var(--border);
+    flex: 0 0 auto;
+    transition: border-color .18s;
+  }
+  .shots img:hover { border-color: var(--green-mid); }
+
+  @media (max-width: 600px) {
+    header { padding: 60px 0 36px; margin-bottom: 44px; }
+    .project { padding: 22px; }
+    .project-head h2 { font-size: 1.45rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-anim" aria-hidden="true">
+  <i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i><i class="b5"></i><i class="b6"></i><i class="b7"></i>
+</div>
+
+<div class="wrap">
+
+  <header>
+    <h1>Summer <em>Shen</em></h1>
+    <div class="header-links">
+      <a href="https://github.com/kiwimiho" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </header>
+
+  <p class="section-label">Latest Projects</p>
+
+  <!-- ============ Sun Seeker ============ -->
+  <section class="project">
+    <div class="project-head">
+      <h2>Sun Seeker</h2>
+      <a class="project-link" href="https://the-architects.itch.io/sun-seeker" target="_blank" rel="noopener">
+        Play on itch.io
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2h6v6M10 2 2.5 9.5"/></svg>
+      </a>
+    </div>
+
+    <p class="desc">The sun has shattered and scattered sun shards throughout the temple. Play as a little moth person called Lo. Dash, climb, and glide through many 3D platforming levels. Collect all the sun shards and ascend the tower to piece the sun back together!</p>
+
+    <a class="trailer" href="https://drive.google.com/file/d/1oHaQSbLrp0TQX3IbpTrxqoYvd0SfGcY0/view" target="_blank" rel="noopener">
+      <img src="https://drive.google.com/thumbnail?id=1oHaQSbLrp0TQX3IbpTrxqoYvd0SfGcY0&sz=w1000" alt="Sun Seeker trailer" loading="lazy">
+      <span class="play"><span></span></span>
+      <span class="trailer-tag">Trailer</span>
+    </a>
+
+    <div class="meta">
+      <div><b>Tech</b> <span class="tech-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Unity_Technologies_logo.svg" alt="Unity"></span></div>
+      <div><b>Role</b> <span>Producer &amp; Programmer</span></div>
+    </div>
+
+    <p class="shots-label">Screenshots</p>
+    <div class="shots">
+      <img src="assets/sunseekers/sunseekers_01.png" alt="Sun Seeker screenshot" loading="lazy">
+      <img src="assets/sunseekers/sunseekers_02.png" alt="Sun Seeker screenshot" loading="lazy">
+      <img src="assets/sunseekers/sunseekers_03.png" alt="Sun Seeker screenshot" loading="lazy">
+      <img src="assets/sunseekers/sunseekers_04.png" alt="Sun Seeker screenshot" loading="lazy">
+    </div>
+  </section>
+
+  <!-- ============ Let Him Cook ============ -->
+  <section class="project">
+    <div class="project-head">
+      <h2>Let Him Cook</h2>
+    </div>
+
+    <p class="desc">Let Him Cook is a re-theming of the retro arcade game Punch-Out. You play as a chef fighting against food that has come to life. Defeat the food by dodging, punching, and blocking. This game also features a score counter, a special critical move, and utensil-themed referees.</p>
+
+    <a class="trailer" href="https://drive.google.com/file/d/1Py10pA3CWpEVe4BHhGulVSbUGOi2cVmM/view" target="_blank" rel="noopener">
+      <img src="https://drive.google.com/thumbnail?id=1Py10pA3CWpEVe4BHhGulVSbUGOi2cVmM&sz=w1000" alt="Let Him Cook trailer" loading="lazy">
+      <span class="play"><span></span></span>
+      <span class="trailer-tag">Trailer</span>
+    </a>
+
+    <div class="meta">
+      <div><b>Tech</b> <span class="tech-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Unity_Technologies_logo.svg" alt="Unity"></span></div>
+      <div><b>Role</b> <span>Programmer</span></div>
+    </div>
+
+    <p class="shots-label">Screenshots</p>
+    <div class="shots">
+      <img src="assets/lethimcook/lethimcook_02.png" alt="Let Him Cook screenshot" loading="lazy">
+      <img src="assets/lethimcook/lethimcook_01.png" alt="Let Him Cook screenshot" loading="lazy">
+      <img src="assets/lethimcook/lethimcook_03.png" alt="Let Him Cook screenshot" loading="lazy">
+    </div>
+  </section>
+
+  <!-- ============ Other Projects ============ -->
+  <p class="section-label" style="margin-top:56px">Other Projects</p>
+
+  <section class="project">
+    <div class="project-head">
+      <h2>The Traveler</h2>
+    </div>
+    <p class="desc">A 3D platform game.</p>
+    <a class="trailer" href="https://drive.google.com/file/d/1dJDl-D2vCiDa64_Nz0zTvt07h_jQW5By/view" target="_blank" rel="noopener">
+      <img src="assets/thetraveler/traveler_01.png" alt="The Traveler trailer" loading="lazy">
+      <span class="play"><span></span></span>
+      <span class="trailer-tag">Trailer</span>
+    </a>
+    <div class="meta">
+      <div><b>Tech</b> <span class="tech-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Unity_Technologies_logo.svg" alt="Unity"></span></div>
+    </div>
+  </section>
+
+  <section class="project">
+    <div class="project-head">
+      <h2>Cosmo-Combat: Mars Arena</h2>
+    </div>
+    <p class="desc">A real-time strategy game.</p>
+    <a class="trailer" href="https://drive.google.com/file/d/1igEtesHNpwdsJvixAGEL1ci4pcJjWs6m/view" target="_blank" rel="noopener">
+      <img src="https://drive.google.com/thumbnail?id=1igEtesHNpwdsJvixAGEL1ci4pcJjWs6m&sz=w1000" alt="Cosmo-Combat trailer" loading="lazy">
+      <span class="play"><span></span></span>
+      <span class="trailer-tag">Trailer</span>
+    </a>
+    <div class="meta">
+      <div><b>Tech</b> <span class="tech-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Unity_Technologies_logo.svg" alt="Unity"></span></div>
+    </div>
+  </section>
+
+  <section class="project">
+    <div class="project-head">
+      <h2>Hungry Hungry Students</h2>
+    </div>
+    <p class="desc">A tower defense demo.</p>
+    <a class="trailer" href="https://drive.google.com/file/d/1DJ6yYPtvF6N0xX5HKkmwJgSNYUyuzS8B/view" target="_blank" rel="noopener">
+      <img src="https://drive.google.com/thumbnail?id=1DJ6yYPtvF6N0xX5HKkmwJgSNYUyuzS8B&sz=w1000" alt="Hungry Hungry Students trailer" loading="lazy">
+      <span class="play"><span></span></span>
+      <span class="trailer-tag">Trailer</span>
+    </a>
+    <div class="meta">
+      <div><b>Tech</b> <span class="tech-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Unity_Technologies_logo.svg" alt="Unity"></span></div>
+    </div>
+  </section>
+
+  <section class="project">
+    <div class="project-head">
+      <h2>Bug Rescue</h2>
+    </div>
+    <p class="desc">My first Unity game — an adventure game with NPCs.</p>
+    <a class="trailer" href="https://drive.google.com/file/d/1T6AGRPx1RA_3PtGswmjl0aCp91FHAVSz/view" target="_blank" rel="noopener">
+      <img src="https://drive.google.com/thumbnail?id=1T6AGRPx1RA_3PtGswmjl0aCp91FHAVSz&sz=w1000" alt="Bug Rescue trailer" loading="lazy">
+      <span class="play"><span></span></span>
+      <span class="trailer-tag">Trailer</span>
+    </a>
+    <div class="meta">
+      <div><b>Tech</b> <span class="tech-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Unity_Technologies_logo.svg" alt="Unity"></span></div>
+    </div>
+  </section>
+
+  <section class="project">
+    <div class="project-head">
+      <h2>Write Wise</h2>
+    </div>
+    <p class="desc">Explored gamification ideas in GTD.</p>
+    <p class="shots-label">Screenshots</p>
+    <div class="shots">
+      <img src="assets/writewise/writewise_01.png" alt="Write Wise screenshot" loading="lazy">
+      <img src="assets/writewise/writewise_02.png" alt="Write Wise screenshot" loading="lazy">
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
