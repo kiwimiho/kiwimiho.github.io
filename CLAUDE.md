@@ -35,8 +35,9 @@ changes. Pure styling changes (palette, spacing, animation) do not.
 To check nothing drifted, compare the two files' links and assets:
 
 ```sh
-diff <(grep -o '/file/d/[A-Za-z0-9_-]*' index.html | sort -u) \
-     <(grep -o '/file/d/[A-Za-z0-9_-]*' content.md | sort -u)
+# {10,} skips the bare '/file/d/' string the click-to-load script builds at runtime
+diff <(grep -o '/file/d/[A-Za-z0-9_-]\{10,\}' index.html | sort -u) \
+     <(grep -o '/file/d/[A-Za-z0-9_-]\{10,\}' content.md | sort -u)
 diff <(grep -o 'assets/[a-z]*/[a-z0-9_]*\.png' index.html | sort -u) \
      <(grep -o 'assets/[a-z]*/[a-z0-9_]*\.png' content.md | sort -u)
 ```
@@ -97,12 +98,25 @@ Drive's thumbnail endpoint for the image, unless the project has a
 `**Trailer thumbnail:**` field — then use that local path as the `src` instead.
 
 ```html
-<a class="trailer" href="https://drive.google.com/file/d/[FILE_ID]/view" target="_blank" rel="noopener">
+<a class="trailer" data-vid="[FILE_ID]" href="https://drive.google.com/file/d/[FILE_ID]/view" target="_blank" rel="noopener">
   <img src="https://drive.google.com/thumbnail?id=[FILE_ID]&sz=w1000" alt="[PROJECT] trailer" loading="lazy">
   <span class="play"><span></span></span>
   <span class="trailer-tag">Trailer</span>
 </a>
 ```
+
+The `data-vid` attribute is required — the click-to-load script at the bottom of
+`index.html` uses it to swap the thumbnail for a Drive `/preview` iframe when a
+visitor clicks. **Do not embed the iframes directly in the markup**: six eager
+iframes would reload every video player on every page load, which is exactly the
+kind of weight that already caused lag complaints here. The `href` stays pointing
+at Drive so the card still works as a plain link if JS is off or the embed is
+blocked.
+
+Playable embeds require the Drive files to stay shared as "anyone with the link".
+If a video ever shows a sign-in wall, check that sharing first — verify by
+loading `https://drive.google.com/file/d/[FILE_ID]/preview` in a private window,
+not a signed-in one.
 
 **Tech logo** (logo only — never write the tech's name in text next to it):
 

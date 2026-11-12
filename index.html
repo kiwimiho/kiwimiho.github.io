@@ -219,6 +219,17 @@
     transition: transform .35s;
   }
   .trailer:hover img { transform: scale(1.04); }
+  /* the player replaces the thumbnail in place, only after a click */
+  .trailer iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  .trailer.is-playing { cursor: default; }
+  .trailer.is-playing:hover { border-color: var(--border); }
   .play {
     position: absolute;
     inset: 0;
@@ -359,7 +370,7 @@
 
     <p class="desc">The sun has shattered and scattered sun shards throughout the temple. Play as a little moth person called Lo. Dash, climb, and glide through many 3D platforming levels. Collect all the sun shards and ascend the tower to piece the sun back together!</p>
 
-    <a class="trailer" href="https://drive.google.com/file/d/1oHaQSbLrp0TQX3IbpTrxqoYvd0SfGcY0/view" target="_blank" rel="noopener">
+    <a class="trailer" data-vid="1oHaQSbLrp0TQX3IbpTrxqoYvd0SfGcY0" href="https://drive.google.com/file/d/1oHaQSbLrp0TQX3IbpTrxqoYvd0SfGcY0/view" target="_blank" rel="noopener">
       <img src="https://drive.google.com/thumbnail?id=1oHaQSbLrp0TQX3IbpTrxqoYvd0SfGcY0&sz=w1000" alt="Sun Seeker trailer" loading="lazy">
       <span class="play"><span></span></span>
       <span class="trailer-tag">Trailer</span>
@@ -387,7 +398,7 @@
 
     <p class="desc">Let Him Cook is a re-theming of the retro arcade game Punch-Out. You play as a chef fighting against food that has come to life. Defeat the food by dodging, punching, and blocking. This game also features a score counter, a special critical move, and utensil-themed referees.</p>
 
-    <a class="trailer" href="https://drive.google.com/file/d/1Py10pA3CWpEVe4BHhGulVSbUGOi2cVmM/view" target="_blank" rel="noopener">
+    <a class="trailer" data-vid="1Py10pA3CWpEVe4BHhGulVSbUGOi2cVmM" href="https://drive.google.com/file/d/1Py10pA3CWpEVe4BHhGulVSbUGOi2cVmM/view" target="_blank" rel="noopener">
       <img src="https://drive.google.com/thumbnail?id=1Py10pA3CWpEVe4BHhGulVSbUGOi2cVmM&sz=w1000" alt="Let Him Cook trailer" loading="lazy">
       <span class="play"><span></span></span>
       <span class="trailer-tag">Trailer</span>
@@ -414,7 +425,7 @@
       <h2>The Traveler</h2>
     </div>
     <p class="desc">A 3D platform game.</p>
-    <a class="trailer" href="https://drive.google.com/file/d/1dJDl-D2vCiDa64_Nz0zTvt07h_jQW5By/view" target="_blank" rel="noopener">
+    <a class="trailer" data-vid="1dJDl-D2vCiDa64_Nz0zTvt07h_jQW5By" href="https://drive.google.com/file/d/1dJDl-D2vCiDa64_Nz0zTvt07h_jQW5By/view" target="_blank" rel="noopener">
       <img src="assets/thetraveler/traveler_01.png" alt="The Traveler trailer" loading="lazy">
       <span class="play"><span></span></span>
       <span class="trailer-tag">Trailer</span>
@@ -429,7 +440,7 @@
       <h2>Cosmo-Combat: Mars Arena</h2>
     </div>
     <p class="desc">A real-time strategy game.</p>
-    <a class="trailer" href="https://drive.google.com/file/d/1igEtesHNpwdsJvixAGEL1ci4pcJjWs6m/view" target="_blank" rel="noopener">
+    <a class="trailer" data-vid="1igEtesHNpwdsJvixAGEL1ci4pcJjWs6m" href="https://drive.google.com/file/d/1igEtesHNpwdsJvixAGEL1ci4pcJjWs6m/view" target="_blank" rel="noopener">
       <img src="https://drive.google.com/thumbnail?id=1igEtesHNpwdsJvixAGEL1ci4pcJjWs6m&sz=w1000" alt="Cosmo-Combat trailer" loading="lazy">
       <span class="play"><span></span></span>
       <span class="trailer-tag">Trailer</span>
@@ -444,7 +455,7 @@
       <h2>Hungry Hungry Students</h2>
     </div>
     <p class="desc">A tower defense demo.</p>
-    <a class="trailer" href="https://drive.google.com/file/d/1DJ6yYPtvF6N0xX5HKkmwJgSNYUyuzS8B/view" target="_blank" rel="noopener">
+    <a class="trailer" data-vid="1DJ6yYPtvF6N0xX5HKkmwJgSNYUyuzS8B" href="https://drive.google.com/file/d/1DJ6yYPtvF6N0xX5HKkmwJgSNYUyuzS8B/view" target="_blank" rel="noopener">
       <img src="https://drive.google.com/thumbnail?id=1DJ6yYPtvF6N0xX5HKkmwJgSNYUyuzS8B&sz=w1000" alt="Hungry Hungry Students trailer" loading="lazy">
       <span class="play"><span></span></span>
       <span class="trailer-tag">Trailer</span>
@@ -459,7 +470,7 @@
       <h2>Bug Rescue</h2>
     </div>
     <p class="desc">My first Unity game — an adventure game with NPCs.</p>
-    <a class="trailer" href="https://drive.google.com/file/d/1T6AGRPx1RA_3PtGswmjl0aCp91FHAVSz/view" target="_blank" rel="noopener">
+    <a class="trailer" data-vid="1T6AGRPx1RA_3PtGswmjl0aCp91FHAVSz" href="https://drive.google.com/file/d/1T6AGRPx1RA_3PtGswmjl0aCp91FHAVSz/view" target="_blank" rel="noopener">
       <img src="https://drive.google.com/thumbnail?id=1T6AGRPx1RA_3PtGswmjl0aCp91FHAVSz&sz=w1000" alt="Bug Rescue trailer" loading="lazy">
       <span class="play"><span></span></span>
       <span class="trailer-tag">Trailer</span>
@@ -482,5 +493,24 @@
   </section>
 
 </div>
+
+<script>
+  // Click-to-load video. The anchor still points at Drive, so without JS (or if
+  // the embed is blocked) the link keeps working as a normal link.
+  document.querySelectorAll('.trailer[data-vid]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (a.classList.contains('is-playing')) return;
+      e.preventDefault();
+      var f = document.createElement('iframe');
+      f.src = 'https://drive.google.com/file/d/' + a.dataset.vid + '/preview';
+      f.allow = 'autoplay; fullscreen';
+      f.setAttribute('allowfullscreen', '');
+      f.title = a.querySelector('img') ? a.querySelector('img').alt : 'Trailer';
+      a.innerHTML = '';
+      a.appendChild(f);
+      a.classList.add('is-playing');
+    });
+  });
+</script>
 </body>
 </html>
